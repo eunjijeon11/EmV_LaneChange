@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <routes>
+            <vType id="car" accel="2.5" decel="4.5" sigma="0.3" length="5" maxSpeed="20"/>
+            <vType id="emv" accel="2.5" decel="4.5" sigma="0.3" length="8" maxSpeed="25"/>
+
+            <route id="r0" edges="road0"/>
+
+		<vehicle id="veh0" type="car" route="r0" depart="18.2" departLane="random" departSpeed="random" departPos="base"/>
+
+		<vehicle id="veh1" type="car" route="r0" depart="20.7" departLane="random" departSpeed="random" departPos="base"/>
+
+		<vehicle id="veh2" type="car" route="r0" depart="28.8" departLane="random" departSpeed="random" departPos="base"/>
+
+		<vehicle id="ambulance" type="emv" route="r0" depart="32.6" departLane="random" departSpeed="random" departPos="base"/>
+
+</routes>

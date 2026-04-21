@@ -1,0 +1,15 @@
+<configuration>
+    <input>
+        <net-file value="net.xml"/>
+        <route-files value="route.xml"/>
+    </input>
+
+    <time>
+        <begin value="0"/>
+        <end value="500"/>
+    </time>
+
+    <processing>
+        <step-length value="0.1"/>
+    </processing>
+</configuration>
