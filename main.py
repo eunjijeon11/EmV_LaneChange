@@ -1,4 +1,4 @@
-from environment import MultiCarEnv
+from environment import MultiCarEnv, V2XEnv
 from agents import QAgent, SarsaAgent, DQNAgent
 import random
 import argparse
@@ -37,6 +37,11 @@ def generate_random_route(emv_mode, vehicle_num):
                 print(f'\t\t<vehicle id="veh{vid}" type="car" route="r0" depart="{vinfo[1]}" departLane="random" departSpeed="random" departPos="base"/>\n', file=f)
         
         print("</routes>", file=f)
+
+def get_environment(emv_mode, is_v2x=False):
+    if is_v2x:
+        return V2XEnv(emv_mode=emv_mode)
+    return MultiCarEnv(emv_mode=emv_mode)
 
 def get_agent(agent_type):
     if agent_type == "q-learning":
@@ -96,6 +101,7 @@ parser.add_argument("--test_episode_num", type=int, default=10)
 parser.add_argument("--vehicle_num", type=int, default=30)
 
 parser.add_argument("--is_2stage", action="store_true")
+parser.add_argument("--is_v2x", action="store_true")
 
 args = parser.parse_args()
 
@@ -103,14 +109,14 @@ args = parser.parse_args()
 # Training
 # ==============================
 
-base_env = MultiCarEnv(emv_mode=False)
+base_env = get_environment(emv_mode=False, is_v2x=args.is_v2x)
 model = get_agent(args.agent_type)(base_env.action_space)
 
 if args.is_2stage:
     model = train(model, base_env, False, args)
     print("Base OV training done!")
 
-emv_env = MultiCarEnv(emv_mode=True)
+emv_env = get_environment(emv_mode=True, is_v2x=args.is_v2x)
 model = train(model, emv_env, True, args)
 print("EmV aware LC training done!")
 
@@ -120,7 +126,7 @@ model.save_policy(args.save_path)
 # ==============================
 # Inference
 # ==============================
-test_env = MultiCarEnv(emv_mode=True)
+test_env = get_environment(emv_mode=True, is_v2x=args.is_v2x)
 model = get_agent(args.agent_type)(test_env.action_space)
 model.load_policy(policy_dir=args.save_path)
 
