@@ -1,8 +1,9 @@
 # 🚑 EMV-Aware Lane Changing under Real-World Perception Constraints with Two-Stage Learning
-Eunji Jeon, Dain Kim, Meng Xu, Seonwoo Park  
-Sungkyunkwan University
+Authors: Eunji Jeon, Dain Kim, Meng Xu, Seonwoo Park  
+*Sungkyunkwan University*
 
 ## Abstract & Overview
+<img width="3330" height="1239" alt="figure_1_background" src="https://github.com/user-attachments/assets/2dbe161f-eb1f-421f-867f-791365d1bac5" />
 
 ## ⚙️ Environment Setup
 First, download the [SUMO-RL](https://sumo.dlr.de/docs/Downloads.php#sumo_-_latest_release_version_1260) simulator. It differs by your OS.  
